@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Zone Secondary School — Election 2083</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F5F3EF;color:#1C1C1C;min-height:100vh}
+:root{
+  --m:#7B1C2E;--md:#5A1320;--ml:#A82840;
+  --gold:#C9922A;--grn:#1B4D2E;
+  --G:#8B1A2F;--S:#1A3A7A;--E:#1B5E3A;--C:#A07000;
+  --bd:#DDD8D0;--bg:#F5F3EF;--mu:#6B6B6B;
+  --sh:0 4px 24px rgba(0,0,0,.10)
+}
+
+/* LOGIN */
+#PG_LOGIN{min-height:100vh;background:linear-gradient(150deg,#3D0E1A 0%,#7B1C2E 55%,#A82840 100%);display:flex;align-items:center;justify-content:center;padding:24px}
+.lcard{background:#fff;border-radius:22px;padding:48px 40px 40px;max-width:380px;width:100%;box-shadow:0 24px 72px rgba(0,0,0,.35);text-align:center}
+.llogo{width:90px;height:90px;object-fit:contain;border-radius:50%;background:#F5F3EF;padding:6px;border:3px solid var(--m);display:block;margin:0 auto 16px}
+.lfb{width:90px;height:90px;border-radius:50%;background:var(--m);color:#fff;font-size:22px;font-weight:700;font-family:'Playfair Display',serif;display:none;align-items:center;justify-content:center;margin:0 auto 16px}
+.lschool{font-family:'Playfair Display',serif;color:var(--m);font-size:20px;font-weight:700;margin-bottom:2px}
+.lplace{font-size:12px;color:var(--mu);margin-bottom:32px}
+.llab{display:block;font-size:12px;font-weight:600;color:#444;text-align:left;margin-bottom:5px;margin-top:14px}
+.linp{width:100%;border:1.5px solid var(--bd);border-radius:11px;padding:13px 16px;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;background:#FAFAF9}
+.linp:focus{border-color:var(--m);background:#fff}
+.lbtn{width:100%;background:var(--m);color:#fff;border:none;border-radius:11px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;margin-top:20px}
+.lbtn:hover{background:var(--md)}
+.lerr{background:#FFF0F0;color:#B91C1C;border:1px solid #FECACA;border-radius:9px;padding:10px 14px;font-size:13px;margin-top:12px;display:none}
+.lfoot{margin-top:20px;border-top:1px solid #F0EDE8;padding-top:14px;text-align:center}
+.lfoot-credits{font-size:12px;font-weight:700;color:#7B1C2E;letter-spacing:0.3px}
+.lfoot-sub{font-size:11px;color:#AAA;margin-top:5px;letter-spacing:0.2px}
+
+/* HEADER */
+#PG_APP{display:none}
+.hdr{background:var(--m);color:#fff;position:sticky;top:0;z-index:200;box-shadow:0 3px 16px rgba(0,0,0,.2)}
+.hdri{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:9px 20px}
+.hlogo{width:50px;height:50px;object-fit:contain;border-radius:50%;background:#fff;padding:3px;flex-shrink:0}
+.hlogofb{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-weight:700;font-size:11px;display:none;align-items:center;justify-content:center;flex-shrink:0}
+.htit{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.25}
+.hsub{font-size:11px;opacity:.75;margin-top:2px}
+.hright{margin-left:auto;display:flex;align-items:center;gap:9px}
+.vbadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px;font-size:12px;font-weight:500}
+.boutl{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:6px 13px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.boutl:hover{background:rgba(255,255,255,.28)}
+
+/* TABS */
+.wrap{max-width:1120px;margin:0 auto;padding:24px 20px}
+.tabs{display:flex;gap:4px;background:#fff;border-radius:14px;padding:6px;margin-bottom:24px;box-shadow:var(--sh);flex-wrap:wrap}
+.tb{flex:1;min-width:100px;padding:10px 6px;border:none;background:transparent;border-radius:10px;font-size:12px;font-weight:500;cursor:pointer;color:var(--mu);font-family:'DM Sans',sans-serif;transition:all .2s;text-align:center}
+.tb.on{background:var(--m);color:#fff}
+.tb:hover:not(.on){background:var(--bg);color:#1C1C1C}
+.panel{display:none}.panel.on{display:block}
+
+/* CANDIDATE CARDS */
+.sec{margin-bottom:28px}
+.sech{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sect{font-family:'Playfair Display',serif;font-size:19px;color:var(--m);white-space:nowrap}
+.secl{flex:1;height:1px;background:var(--bd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:13px}
+
+.cc{background:#fff;border:2px solid var(--bd);border-radius:14px;padding:20px 16px 16px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.cc:hover{border-color:var(--ml);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.10)}
+.cc.sel{border-color:var(--m);background:#FFF5F7;box-shadow:0 0 0 3px rgba(123,28,46,.14)}
+
+/* Candidate photo */
+.cphoto-wrap{width:80px;height:80px;border-radius:50%;margin:0 auto 10px;overflow:hidden;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;font-family:'Playfair Display',serif}
+.cphoto-wrap img{width:100%;height:100%;object-fit:cover}
+
+/* Election symbol */
+.csymbol{width:48px;height:48px;border-radius:8px;border:2px solid var(--bd);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:22px;background:#fff;overflow:hidden}
+.csymbol-text{font-size:10px!important;font-weight:700;color:var(--m);letter-spacing:.02em;text-transform:uppercase}
+.csymbol-name{font-size:11px;font-weight:700;color:var(--m);text-align:center;margin-bottom:6px;letter-spacing:.02em;text-transform:uppercase}
+
+.cn{font-weight:600;font-size:14px;margin-bottom:2px}
+.ccls{font-size:11px;color:var(--mu);margin-bottom:6px}
+.hbdg{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;color:#fff}
+.ck{position:absolute;top:9px;right:9px;width:22px;height:22px;border-radius:50%;background:var(--m);color:#fff;display:none;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.cc.sel .ck{display:flex}
+
+/* Submit bar */
+.sbar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--bd);padding:13px 20px;margin:0 -20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;box-shadow:0 -4px 20px rgba(0,0,0,.08);z-index:50}
+.sinfo{font-size:13px;color:var(--mu)}
+.bsub{background:var(--grn);color:#fff;border:none;border-radius:10px;padding:11px 26px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.bsub:hover{background:#143D24}
+.bsub:disabled{background:#aaa;cursor:not-allowed}
+
+/* POST VOTE screen */
+.voted-screen{background:#fff;border-radius:16px;padding:32px;text-align:center;box-shadow:var(--sh)}
+.voted-icon{width:72px;height:72px;border-radius:50%;background:#16a34a;color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.voted-screen h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--m);margin-bottom:8px}
+.voted-screen p{font-size:14px;color:var(--mu);margin-bottom:24px}
+.vsummary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:20px;text-align:left}
+.vsitem{background:#F9F7F5;border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px}
+.vsphoto{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--bd);flex-shrink:0}
+.vsphoto-fb{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.vsrole{font-size:11px;color:var(--mu);font-weight:500}
+.vsname{font-size:13px;font-weight:600;margin-top:2px}
+.vssymbol{font-size:18px;margin-right:4px}
+.locked-badge{display:inline-flex;align-items:center;gap:6px;background:#FFF8EC;border:1px solid #F5D98A;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:#7A5200;margin-top:16px}
+
+/* RESULTS */
+.rhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.rhead h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--m)}
+.bprint{background:var(--gold);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.bprint:hover{background:#E8B84B;color:var(--md)}
+.rsec{margin-bottom:26px}
+.rsect{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:11px;display:flex;align-items:center;gap:10px}
+.rsect::after{content:'';flex:1;height:1px;background:var(--bd)}
+.rcard{background:#fff;border-radius:13px;padding:16px;box-shadow:var(--sh)}
+.rrow{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.rrow:last-child{margin-bottom:0}
+.rrank{font-size:17px;font-weight:700;width:26px;text-align:center;color:var(--m);flex-shrink:0}
+.rphoto{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--bd)}
+.rphoto-fb{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.rsymbol-badge{width:38px;height:38px;border-radius:50%;border:2px solid var(--bd);background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.rname{font-weight:600;font-size:14px}
+.rho{font-size:11px;color:var(--mu)}
+.rbarbg{flex:2;background:var(--bg);border-radius:5px;height:11px;overflow:hidden}
+.rbar{height:100%;border-radius:5px;transition:width 1.2s ease}
+.rv{font-weight:700;font-size:14px;min-width:36px;text-align:right}
+.crwn{color:#D4A017;margin-left:4px;font-size:15px}
+.winner-row{background:#FFFBEB}
+
+/* ANALYTICS */
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-bottom:22px}
+.acard{background:#fff;border-radius:13px;padding:18px;box-shadow:var(--sh);text-align:center}
+.anum{font-size:30px;font-weight:700;color:var(--m);font-family:'Playfair Display',serif}
+.albl{font-size:12px;color:var(--mu);margin-top:3px}
+.cbox{background:#fff;border-radius:13px;padding:20px;box-shadow:var(--sh);margin-bottom:16px}
+.cbox h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--m);margin-bottom:14px}
+.hrow{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.hname{font-size:13px;font-weight:600;width:80px;flex-shrink:0}
+.hbarbg{flex:1;background:var(--bg);border-radius:5px;height:14px;overflow:hidden}
+.hbarr{height:100%;border-radius:5px;transition:width 1.2s ease}
+.hlbl{font-size:12px;font-weight:600;min-width:52px;text-align:right}
+
+/* ANNOUNCE */
+.seclab{font-size:13px;color:var(--mu);margin-bottom:11px}
+.abox{background:#fff;border-radius:13px;padding:19px;box-shadow:var(--sh);margin-bottom:13px;border-left:4px solid var(--m)}
+.atit{font-family:'Playfair Display',serif;font-size:15px;color:var(--m);margin-bottom:6px}
+.abod{font-size:13px;line-height:1.7}
+.adat{font-size:11px;color:var(--mu);margin-top:7px}
+
+/* SERVICE */
+.svcard{background:#fff;border-radius:13px;padding:19px;box-shadow:var(--sh);margin-bottom:13px}
+.svcard h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--grn);margin-bottom:6px}
+.svcard p{font-size:13px;line-height:1.7}
+.svtag{display:inline-block;background:#EAF5EE;color:var(--grn);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;margin-top:8px;margin-right:5px}
+
+/* ADMIN */
+.adm-wrap{background:#fff;border-radius:14px;padding:22px;box-shadow:var(--sh);margin-bottom:20px}
+.adm-wrap h3{font-family:'Playfair Display',serif;font-size:16px;color:var(--m);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--bd)}
+.adm-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.atb{padding:8px 16px;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--mu);transition:all .2s}
+.atb.on{background:var(--m);color:#fff}
+.adm-sub{display:none}.adm-sub.on{display:block}
+.ctbl{width:100%;border-collapse:collapse;font-size:13px}
+.ctbl th{background:var(--m);color:#fff;padding:9px 12px;text-align:left;font-weight:600}
+.ctbl td{padding:8px 12px;border-bottom:1px solid #F0EDE8;vertical-align:middle}
+.ctbl tr:hover td{background:#FFF8F9}
+.cedit{border:1.5px solid var(--bd);border-radius:7px;padding:5px 9px;font-size:12px;font-family:'DM Sans',sans-serif;outline:none;width:100%;transition:border-color .2s}
+.cedit:focus{border-color:var(--m)}
+.hsel{border:1.5px solid var(--bd);border-radius:7px;padding:5px 9px;font-size:12px;font-family:'DM Sans',sans-serif;outline:none;background:#fff}
+.symsel{border:1.5px solid var(--bd);border-radius:7px;padding:5px 9px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;background:#fff;width:100%}
+.bsave{background:var(--grn);color:#fff;border:none;border-radius:7px;padding:6px 13px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.afield{width:100%;border:1.5px solid var(--bd);border-radius:9px;padding:10px 13px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px}
+.afield:focus{border-color:var(--m)}
+.bpost{background:var(--m);color:#fff;border:none;border-radius:9px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.vtbl{width:100%;border-collapse:collapse;font-size:12px}
+.vtbl th{background:var(--m);color:#fff;padding:8px 10px;text-align:left}
+.vtbl td{padding:7px 10px;border-bottom:1px solid #F0EDE8}
+.btndgr{background:#B91C1C;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:14px}
+.pwform{display:flex;flex-direction:column;gap:10px;max-width:300px}
+.pwinp{border:1.5px solid var(--bd);border-radius:9px;padding:10px 13px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
+.pwinp:focus{border-color:var(--m)}
+.bpwsave{background:var(--m);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.okmsg{background:#F0FDF4;color:#15803D;border:1px solid #86EFAC;border-radius:8px;padding:9px 13px;font-size:13px;display:none;margin-top:8px}
+
+/* photo upload in admin */
+.photo-thumb{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--bd)}
+.photo-tbl-fb{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999;padding:20px}
+.overlay.show{display:flex}
+.mbox{background:#fff;border-radius:18px;padding:30px 26px;max-width:480px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.25);max-height:88vh;overflow-y:auto}
+.mbox h3{font-family:'Playfair Display',serif;font-size:19px;color:var(--m);margin-bottom:5px}
+.msub{font-size:12px;color:var(--mu);margin-bottom:16px}
+.citem{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #EEE;font-size:13px}
+.citem:last-of-type{border-bottom:none}
+.crole{color:var(--mu);font-size:12px;font-weight:500}
+.cval{font-weight:600;display:flex;align-items:center;gap:8px}
+.mbtns{display:flex;gap:10px;margin-top:18px}
+.bbk{flex:1;background:var(--bg);color:#1C1C1C;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+.bok{flex:1;background:var(--m);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+.foot{text-align:center;font-size:11px;color:var(--mu);padding:20px;border-top:1px solid var(--bd);margin-top:36px}
+.ptitle{display:none;text-align:center;font-family:'Playfair Display',serif;font-size:20px;color:var(--m);margin-bottom:16px}
+@media print{
+  .hdr,.tabs,.sbar,.bprint,.overlay,.adm-wrap,.boutl,.vbadge,.foot{display:none!important}
+  body{background:#fff}
+  .ptitle{display:block!important}
+  .rcard{box-shadow:none;border:1px solid var(--bd)}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="PG_LOGIN">
+  <div class="lcard">
+    <img class="llogo" src="logo-southzone.png" alt="Logo"
+      onerror="this.style.display='none';document.getElementById('lfb').style.display='flex'">
+    <div class="lfb" id="lfb">SZSS</div>
+    <div class="lschool">South Zone Secondary School</div>
+    <div class="lplace">Birgunj, Nepal &nbsp;&middot;&nbsp; Election 2083 B.S.</div>
+    <label class="llab">Voter ID</label>
+    <input class="linp" id="UID" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <label class="llab">Password</label>
+    <input class="linp" id="UPW" type="password" autocomplete="off">
+    <button class="lbtn" id="LBTN">Login</button>
+    <div class="lerr" id="LERR">&#10005;&nbsp; Invalid credentials. Please try again.</div>
+    <div class="lfoot">
+      <div class="lfoot-credits">Razza Kurmi &nbsp;|&nbsp; Habibullah Samani &nbsp;|&nbsp; SGSS</div>
+      <div style="margin-top:8px;font-size:11px;">Firebase: <span id="FB_STATUS" style="font-weight:600;color:#AAA;">⏳ Connecting...</span></div>
+      <div class="lfoot-sub">सन्देश घोषणा सामुदायिक सेवा</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div id="PG_APP">
+  <div class="hdr">
+    <div class="hdri">
+      <img class="hlogo" src="logo-southzone.png" alt="Logo"
+        onerror="this.style.display='none';document.getElementById('hlfb').style.display='flex'">
+      <div class="hlogofb" id="hlfb">SZSS</div>
+      <div>
+        <div class="htit">South Zone Secondary School</div>
+        <div class="hsub">Birgunj, Nepal &nbsp;&middot;&nbsp; Digital Election 2083 B.S.</div>
+      </div>
+      <div class="hright">
+        <span class="vbadge" id="VLB">—</span>
+        <button class="boutl" onclick="doLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tb on" id="T_vote"      onclick="go('vote')"      style="display:none">&#9745; Vote</button>
+      <button class="tb"    id="T_result"    onclick="go('result')"    style="display:none">&#128202; Results</button>
+      <button class="tb"    id="T_analytics" onclick="go('analytics')" style="display:none">&#128200; Analytics</button>
+      <button class="tb"    id="T_announce"  onclick="go('announce')">&#128226; सन्देश</button>
+      <button class="tb"    id="T_service"   onclick="go('service')">&#127968; सामुदायिक सेवा</button>
+      <button class="tb"    id="T_admin"     onclick="go('admin')"     style="display:none">&#9881; Admin</button>
+    </div>
+
+    <!-- VOTE PANEL -->
+    <div class="panel on" id="P_vote">
+      <!-- PRE-VOTE: ballot form (hidden once voted) -->
+      <div id="PRE_VOTE">
+        <div class="sec"><div class="sech"><div class="sect">Head Boy</div><div class="secl"></div></div><div class="grid" id="G_headboy"></div></div>
+        <div class="sec"><div class="sech"><div class="sect">Head Girl</div><div class="secl"></div></div><div class="grid" id="G_headgirl"></div></div>
+        <div class="sec"><div class="sech"><div class="sect">House Captains</div><div class="secl"></div></div><div class="grid" id="G_captain"></div></div>
+        
+        <div class="sbar" id="SBAR">
+          <div class="sinfo" id="SINFO">Select all 4 categories to submit</div>
+          <button class="bsub" id="SBTN" disabled onclick="openModal()">Submit All Votes &#10003;</button>
+        </div>
+      </div>
+      <!-- POST-VOTE: success screen (shown after voting, cannot go back) -->
+      <div id="POST_VOTE" style="display:none">
+        <div class="voted-screen">
+          <div class="voted-icon">&#10003;</div>
+          <h2>Your Vote Has Been Recorded!</h2>
+          <p>Thank you for participating in the election. Your vote is secure and final.</p>
+          <div class="locked-badge">&#128274; Voting is permanently closed for your account</div>
+          <div class="vsummary" id="VOTE_SUMMARY"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS (admin only) -->
+    <div class="panel" id="P_result">
+      <div class="ptitle">South Zone Secondary School — Election Results 2083 B.S.</div>
+      <div class="rhead">
+        <h2>&#128202; Election Results</h2>
+        <button class="bprint" onclick="window.print()">&#128438; Print Results</button>
+      </div>
+      <div id="R_BODY"></div>
+    </div>
+
+    <!-- ANALYTICS (admin only) -->
+    <div class="panel" id="P_analytics"><div id="A_BODY"></div></div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div class="panel" id="P_announce">
+      <p class="seclab">&#128226; सन्देश घोषणा — School Announcements</p>
+      <div id="ANN_LIST"></div>
+    </div>
+
+    <!-- COMMUNITY SERVICE -->
+    <div class="panel" id="P_service">
+      <p class="seclab">&#127968; सामुदायिक सेवा — Community Service</p>
+      <div id="SVC_LIST"></div>
+    </div>
+
+    <!-- ADMIN (admin only) -->
+    <div class="panel" id="P_admin">
+      <div class="adm-wrap">
+        <h3>&#9881; Admin Control Panel</h3>
+        <div id="ROLE_BANNER" style="background:#FFF8EC;border:1px solid #F5D98A;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;display:flex;align-items:center;gap:10px">
+          <span id="ROLE_BADGE" style="font-size:20px"></span>
+          <div>
+            <div style="font-weight:600;color:#5A3A00" id="ROLE_LABEL">—</div>
+            <div style="color:#7A5200;font-size:12px;margin-top:2px" id="ROLE_DESC">—</div>
+          </div>
+        </div>
+        <div class="adm-tabs">
+          <!-- Tab buttons are built dynamically by bldAdmin() based on role permissions -->
+        </div>
+        <div class="adm-sub on" id="ADM_candidates"><div id="CAND_TBLS"></div></div>
+        <div class="adm-sub" id="ADM_announcements">
+          <input class="afield" id="ANN_T" placeholder="Announcement title...">
+          <textarea class="afield" id="ANN_B" rows="3" style="resize:vertical" placeholder="Message..."></textarea>
+          <button class="bpost" onclick="postAnn()">&#10133; Post Announcement</button>
+          <div id="ANN_PREV" style="margin-top:20px"></div>
+        </div>
+        <div class="adm-sub" id="ADM_voters">
+          <p style="font-size:13px;color:var(--mu);margin-bottom:14px">Total confirmed votes: <strong id="VCNT">0</strong> / 2500</p>
+          <div id="VOTER_TBL"></div>
+          <button class="btndgr" id="RESET_BTN" onclick="resetVotes()">&#128465; Reset All Votes</button>
+        </div>
+        <div class="adm-sub" id="ADM_password">
+          <p style="font-size:13px;color:var(--mu);margin-bottom:16px">Only <strong>Chief Coordinator</strong> can change any account password. Enter your Chief password to authorize.</p>
+          <div class="pwform">
+            <label style="font-size:13px;font-weight:500">Account to Change</label>
+            <select class="pwinp" id="PW_ACCT" style="font-size:13px">
+              <option value="CHIEF">👑 Chief Coordinator</option>
+              <option value="SECURITY">🔐 Chief Security</option>
+              <option value="VSECURITY">🛡️ Vice Security</option>
+              <option value="VIEWER">👁️ Viewer</option>
+            </select>
+            <label style="font-size:13px;font-weight:500">Your Current Chief Password</label>
+            <input class="pwinp" id="PW_OLD" type="password">
+            <label style="font-size:13px;font-weight:500">New Password for Selected Account</label>
+            <input class="pwinp" id="PW_NEW" type="password">
+            <label style="font-size:13px;font-weight:500">Confirm New Password</label>
+            <input class="pwinp" id="PW_CON" type="password">
+            <button class="bpwsave" onclick="changePass()">Save Password</button>
+            <div class="okmsg" id="PW_OK">&#10003; Password changed successfully.</div>
+            <div class="lerr" id="PW_ERR" style="margin-top:0;display:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">Designed &amp; Developed by <strong>Razza Kurmi Team</strong> &nbsp;&middot;&nbsp; South Zone Secondary School, Birgunj, Nepal</div>
+  </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="overlay" id="MODAL">
+  <div class="mbox">
+    <h3>Confirm Your Votes</h3>
+    <p class="msub">Once submitted, votes <strong>cannot be changed</strong>. Please review carefully.</p>
+    <div id="M_LIST"></div>
+    <div class="mbtns">
+      <button class="bbk" onclick="closeModal()">&#8592; Go Back</button>
+      <button class="bok" onclick="confirmVote()">&#10003; Confirm &amp; Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// ELECTION SYMBOLS — each candidate uploads their own symbol JPG image
+// symbol field stores base64 image data URL (uploaded by admin)
+// symbolName field stores the text name of the symbol (e.g. "Sun", "Flower")
+// ============================================================
+
+// ============================================================
+// HOUSE COLORS & ROLE LABELS
+// ============================================================
+var HC = {Garnet:'#8B1A2F', Sapphire:'#1A3A7A', Emerald:'#1B5E3A', Citrine:'#A07000'};
+var RL = {headboy:'Head Boy', headgirl:'Head Girl', captain:'House Captain'};
+
+// ============================================================
+// CANDIDATES — each has a unique election symbol
+// ============================================================
+var CD = {
+  headboy:[
+    {id:'hb1', name:'Aarav Sharma',    cls:'Class 10-A', house:'Garnet',   photo:'', symbolImg:'', symbolName:'Sun'},
+    {id:'hb2', name:'Bikash Thapa',    cls:'Class 10-B', house:'Sapphire', photo:'', symbolImg:'', symbolName:'Flower'},
+    {id:'hb3', name:'Chetan Yadav',    cls:'Class 10-C', house:'Emerald',  photo:'', symbolImg:'', symbolName:'Leaf'},
+    {id:'hb4', name:'Dev Joshi',       cls:'Class 10-D', house:'Citrine',  photo:'', symbolImg:'', symbolName:'Star'}
+  ],
+  headgirl:[
+    {id:'hg1', name:'Anisha Gupta',    cls:'Class 10-A', house:'Garnet',   photo:'', symbolImg:'', symbolName:'Lamp'},
+    {id:'hg2', name:'Binita Sah',      cls:'Class 10-B', house:'Sapphire', photo:'', symbolImg:'', symbolName:'Book'},
+    {id:'hg3', name:'Chandani Rai',    cls:'Class 10-C', house:'Emerald',  photo:'', symbolImg:'', symbolName:'Bell'},
+    {id:'hg4', name:'Divya Pandey',    cls:'Class 10-D', house:'Citrine',  photo:'', symbolImg:'', symbolName:'Pen'}
+  ],
+  captain:[
+    {id:'cp1', name:'Rajan Adhikari',  cls:'Class 9-A',  house:'Garnet',   photo:'', symbolImg:'', symbolName:'Shield'},
+    {id:'cp2', name:'Sagar Karki',     cls:'Class 9-B',  house:'Sapphire', photo:'', symbolImg:'', symbolName:'Torch'},
+    {id:'cp3', name:'Niraj Lama',      cls:'Class 9-C',  house:'Emerald',  photo:'', symbolImg:'', symbolName:'Flag'},
+    {id:'cp4', name:'Prashant Tiwari', cls:'Class 9-D',  house:'Citrine',  photo:'', symbolImg:'', symbolName:'Crown'}
+  ],
+
+};
+
+// ============================================================
+// VOTE STORE
+// KEY = voterID string.  VALUE = {headboy, headgirl, captain, ts}
+// A voter's presence in VS means they have PERMANENTLY voted — never removed except by admin reset.
+// ============================================================
+// ============================================================
+// FIREBASE CONFIG — replace these values with your own from Firebase Console
+// Step: console.firebase.google.com → Your Project → Project Settings → Your Apps → Config
+// ============================================================
+var FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyBMGT32KyS5I7AccWONhAvtIMO9-PmJqk4",
+  authDomain:        "sgss-7-c9609.firebaseapp.com",
+  databaseURL:       "https://sgss-7-c9609-default-rtdb.firebaseio.com",
+  projectId:         "sgss-7-c9609",
+  storageBucket:     "sgss-7-c9609.firebasestorage.app",
+  messagingSenderId: "114967250510",
+  appId:             "1:114967250510:web:dca4515098b72506ffe51f",
+  measurementId:     "G-89D203FS3X"
+};
+
+// ============================================================
+// FIREBASE — BULLETPROOF INIT
+// Syncs votes, candidates, announcements, services across ALL devices
+// ============================================================
+var FIREBASE_READY = false;
+var VOTES_REF  = null;
+var CANDS_REF  = null;
+var ANNS_REF   = null;
+var SVCS_REF   = null;
+var _vsCache   = {};
+var LS_KEY     = 'szss_votes_2083';
+
+function _lsLoad(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'{}'); }catch(e){ return {}; } }
+function _lsSave(d){ try{ localStorage.setItem(LS_KEY, JSON.stringify(d)); }catch(e){} }
+
+// Wait for Firebase SDK to be fully ready before initializing
+function _initFirebaseApp(){
+  try {
+    if(typeof firebase === 'undefined') return;
+    if(!firebase.apps || firebase.apps.length === 0){
+      firebase.initializeApp(FIREBASE_CONFIG);
+    }
+    var DB    = firebase.database();
+    VOTES_REF = DB.ref('votes');
+    CANDS_REF = DB.ref('candidates');
+    ANNS_REF  = DB.ref('announcements');
+    SVCS_REF  = DB.ref('services');
+    FIREBASE_READY = true;
+    initFirebase();
+  } catch(e){
+    _vsCache = _lsLoad();
+    FIREBASE_READY = false;
+  }
+}
+
+function _startFirebase(){
+  if(typeof firebase !== 'undefined'){ _initFirebaseApp(); return; }
+
+  var CDNS = [
+    'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js'
+  ];
+  var DB_CDNS = [
+    'https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js'
+  ];
+
+  function tryLoad(urls, cb){
+    if(!urls.length){ cb(new Error('all CDNs failed')); return; }
+    _loadScript(urls[0], function(err){
+      if(!err){ cb(null); }
+      else { tryLoad(urls.slice(1), cb); }
+    });
+  }
+
+  tryLoad(CDNS, function(err){
+    if(err){ _vsCache = _lsLoad(); return; }
+    tryLoad(DB_CDNS, function(err2){
+      if(err2){ _vsCache = _lsLoad(); return; }
+      _initFirebaseApp();
+    });
+  });
+}
+
+// Dynamically load Firebase SDK then init
+if(!FIREBASE_READY){ _vsCache = _lsLoad(); }
+
+function _loadScript(src, cb){
+  var s = document.createElement('script');
+  s.src = src;
+  s.onload = cb;
+  s.onerror = function(){ cb(new Error('Failed: ' + src)); };
+  document.head.appendChild(s);
+}
+
+function initFirebase(){
+  if(!FIREBASE_READY || !VOTES_REF) return;
+
+  // ── CONNECTION STATUS ──
+  firebase.database().ref('.info/connected').on('value', function(snap){
+    var el = document.getElementById('FB_STATUS');
+    if(!el) return;
+    if(snap.val() === true){
+      el.innerHTML = '🟢 Live';
+      el.style.color = '#1B5E3A';
+    } else {
+      el.innerHTML = '🔴 Offline';
+      el.style.color = '#B91C1C';
+    }
+  });
+
+  // ── VOTES ──
+  VOTES_REF.on('value', function(snap){
+    _vsCache = snap.val() || {};
+    if(ME && ME.isAdmin){
+      bldResults();
+      bldAnalytics();
+      bldVoterLog();
+    } else if(ME && !ME.isAdmin){
+      renderVotePage();
+    }
+  });
+
+  // Sync candidates from Firebase to all devices
+  CANDS_REF.on('value', function(snap){
+    var data = snap.val();
+    if(data){
+      Object.keys(data).forEach(function(role){
+        if(CD[role]) CD[role] = data[role];
+      });
+      if(ME){
+        buildGrids();
+        if(ME.isAdmin) bldCandTbls();
+      }
+    } else {
+      // First time — push default candidates to Firebase
+      CANDS_REF.set(CD);
+    }
+  });
+
+  // Sync announcements
+  ANNS_REF.on('value', function(snap){
+    var data = snap.val();
+    if(data !== null) ANNS = Array.isArray(data) ? data : Object.values(data);
+    if(ME){ buildAnnounce(); if(ME.isAdmin) bldAnnAdmin(); }
+  });
+
+  // Sync services
+  SVCS_REF.on('value', function(snap){
+    var data = snap.val();
+    if(data !== null) SVCS = Array.isArray(data) ? data : Object.values(data);
+    if(ME){ buildService(); }
+  });
+}
+
+var VS = {
+  get: function(id){
+    return _vsCache[id] || null;
+  },
+  set: function(id, val){
+    _vsCache[id] = val;
+    if(FIREBASE_READY && VOTES_REF){
+      VOTES_REF.child(id).set(val);
+    } else {
+      _lsSave(_vsCache);
+    }
+  },
+  keys: function(){ return Object.keys(_vsCache); },
+  entries: function(){ return Object.keys(_vsCache).map(function(k){ return [k, _vsCache[k]]; }); },
+  clear: function(){
+    _vsCache = {};
+    if(FIREBASE_READY && VOTES_REF){
+      VOTES_REF.set(null);
+    } else {
+      _lsSave({});
+    }
+  }
+};
+var SEL = {};
+var ME  = null; // {id, role, isAdmin}
+
+// ── ADMIN ACCOUNTS ──────────────────────────────────────────
+// role: 'chief'       → full access (candidates, results, analytics, voter log, reset, password, announcements)
+// role: 'security'    → results + analytics + voter log + reset votes only
+// role: 'vsecurity'   → results + analytics + voter log (NO reset)
+// role: 'viewer'      → results + analytics only (read-only)
+// ─────────────────────────────────────────────────────────────
+var ADMINS = {
+  'CHIEF':    { pass: 'Chief@2083',    role: 'chief',     label: 'Chief Coordinator',  badge:'👑' },
+  'SECURITY': { pass: 'Security@2083', role: 'security',  label: 'Chief Security',     badge:'🔐' },
+  'VSECURITY':{ pass: 'VSecurity@2083',role: 'vsecurity', label: 'Vice Security',      badge:'🛡️' },
+  'VIEWER':   { pass: 'Viewer@2083',   role: 'viewer',    label: 'Viewer',             badge:'👁️' }
+};
+
+// Permission helper
+function can(action){
+  if(!ME || !ME.role) return false;
+  var perms = {
+    chief:     ['results','analytics','voters','reset','candidates','announcements','password'],
+    security:  ['results','analytics','voters','reset'],
+    vsecurity: ['results','analytics','voters'],
+    viewer:    ['results','analytics']
+  };
+  return (perms[ME.role]||[]).indexOf(action) !== -1;
+}
+
+var ANNS = [
+  {title:'Election Day Notice',      body:'Voting open 9:00 AM – 3:00 PM. All registered students must vote once.',            date:'2083-02-15'},
+  {title:'Code of Conduct',          body:'Campaigning inside the voting area is strictly prohibited.',                         date:'2083-02-14'},
+  {title:'सन्देश विद्यार्थीहरूलाई', body:'सबै विद्यार्थीहरूलाई निर्वाचनमा सहभागी हुन हार्दिक आमन्त्रण छ।',              date:'2083-02-13'}
+];
+var SVCS = [
+  {title:'Campus Cleanliness Drive',  desc:'Every Friday, student volunteers clean the school compound.',          tags:['Environment','Weekly']},
+  {title:'Blood Donation Camp',       desc:'Annual camp with Narayani Hospital. Open to teachers and parents.',    tags:['Health','Annual']},
+  {title:'Plantation Programme',      desc:'Tree planting during monsoon season to increase green cover.',         tags:['Environment','Monsoon']},
+  {title:'Scholarship Drive',         desc:'Books and stationery collection for underprivileged students.',        tags:['Education','Social']}
+];
+
+var VOTER_PINS=[1654,1342,5149,1920,1249,2270,2903,6617,2742,2426,5329,2490,6684,1100,8671,7282,8883,7380,2258,2449,6817,4571,5971,9682,4753,5934,1016,6955,8188,2596,6818,8064,5923,8672,6567,8827,6840,8996,7892,1409,2960,9971,2717,6805,9507,6062,7219,1756,9059,2660,2063,6495,8580,6342,1697,1273,8978,6699,6080,7954,6993,7965,8876,3884,6911,3456,2316,3571,3506,2541,7294,5623,7897,4500,4989,9482,6589,7792,9478,4874,7362,3483,4620,3267,9600,7706,2417,2482,3801,6231,3671,6392,5551,7336,1136,8176,5261,2665,9905,9188,4000,8393,7331,3957,7334,8517,8542,4718,2734,1171,2071,7509,3841,6560,2918,9465,4122,2750,3682,9007,2539,6026,2644,8328,5390,5191,9101,2036,1199,1081,7989,8489,6259,6304,6371,4103,4512,9679,6556,6794,3277,8381,6998,4143,2055,7383,7332,7883,3105,4829,2685,7227,5475,8075,6832,1260,5381,3654,6379,4222,1127,6176,3889,3521,8087,8581,5644,1974,9629,1458,7102,3970,4193,1253,6293,5815,6601,6907,5931,9665,9590,6976,6030,9818,8321,8313,3143,8679,1363,6763,5500,2894,8794,7626,2854,3792,2499,5910,4392,5369,2920,1205,8441,3171,1680,3600,5326,7058,3535,2699,5281,6997,8784,9854,4642,7596,6312,8224,4005,4757,7460,5594,8932,6239,1715,3685,8204,9300,6990,7674,8828,5871,8601,7068,2014,3898,2913,9960,8155,7385,6394,9777,6662,8271,4996,8279,7495,6525,8070,2318,7930,6636,2868,5077,6554,6975,9966,5047,4582,9408,3484,8443,3832,7314,2988,5583,9724,6422,5634,7707,5668,2165,3519,8514,4340,7755,2785,1300,6600,2450,3657,2152,3764,9557,8770,7212,3465,8304,4101,9050,3618,3442,5389,6458,4634,7541,3566,1825,4551,9108,2983,9850,1609,1549,4403,1491,8560,1627,6646,3342,2619,3050,8505,2296,5062,2319,3459,7470,5638,1647,8836,2998,1625,4334,9027,1556,4810,2115,3533,8768,2738,3803,7875,4624,2373,7260,5320,8799,3404,8402,4473,5595,7778,7820,9472,1828,2622,6278,1793,4064,5530,6880,5240,8965,8882,5646,6847,3836,7208,2391,9318,6829,9177,2686,2352,5992,9851,5684,8124,6961,1130,3542,6418,9726,2552,1951,9240,6115,1309,2530,6942,5123,1860,1541,7082,5754,9837,2366,9081,9441,4303,7823,5383,7428,3003,3268,3226,2263,4293,7840,4124,8096,5410,6900,5675,8550,9561,6889,5957,2306,9860,5423,6506,7604,9291,7730,9424,5220,4012,4615,6050,2378,7867,1014,9988,9659,9999,8920,2544,2573,2169,8115,5562,7858,3881,3740,8374,9229,2221,7602,6284,6148,9085,3436,3717,7827,9315,8813,4507,6428,2781,4371,5620,1922,7264,8324,9544,7714,3047,2611,9702,4976,6192,8472,7726,7661,4287,1553,2722,2033,8718,5286,7085,6238,8349,2124,3700,7685,9323,5090,3458,2815,4200,2409,5218,2024,4910,9430,3358,6436,3106,1742,1972,7267,9631,6721,3992,5237,1355,9054,3082,6719,5648,2917,8759,6759,2787,8074,6663,8463,4225,8047,8785,6051,3865,8733,3742,1989,3712,4645,6048,7008,6035,9038,7611,7392,3263,7902,1767,3065,8916,9451,1038,8551,5152,2250,7302,1638,5622,9920,4979,4647,6236,5813,7023,4409,5092,4481,7882,6637,2765,6672,4440,4098,4366,5925,6648,1885,9306,4043,6156,7480,8298,2642,9980,4918,4530,2811,4229,5014,4574,3487,6130,9079,9199,7089,9157,8282,8766,3053,5402,8389,2243,2210,3228,9748,5296,8957,1392,9219,9402,3305,1441,5162,9486,3325,2956,4203,9691,5375,5078,1201,4015,2077,6777,2227,4051,6741,8771,3701,9558,7643,5179,5098,3814,7035,5268,5647,3501,9377,8497,5042,6265,6049,2802,4069,2886,2459,9940,7988,6688,2371,8645,7615,2940,1102,7487,5543,8387,6892,4046,2582,4161,1620,1583,1518,8614,9148,6607,8000,2502,2806,9080,3004,6314,2616,4605,5826,3839,6715,1002,3988,1470,6504,2410,8891,4154,8331,6660,8685,4898,5050,7621,3172,9241,3786,8399,3434,5532,1005,8338,3650,7583,1586,4226,1525,4167,6957,3876,8962,5254,6172,2603,4491,1092,4779,7028,1263,6678,5505,3272,4252,4207,9374,8105,4610,4872,9332,7981,4324,7064,6641,7861,5484,4323,5180,9801,2138,8211,6707,4986,7555,7843,1060,4280,1047,9384,5740,5699,3292,4660,8267,7191,6603,6499,7481,5537,1589,7795,6795,9792,4818,5127,3290,5234,9189,6322,8315,8466,8911,3973,6873,7399,8529,2925,8823,5235,1980,3074,7613,1780,1691,9064,6864,5829,3822,7958,7367,4942,7461,1195,1335,4761,2651,1215,4355,8053,9615,8205,2367,6194,6044,9522,9492,7598,5651,4947,1864,3930,6604,2340,4117,5619,7153,3962,2155,4449,3765,6811,3235,2701,1689,2731,3724,3605,5181,1463,4588,7449,2207,8868,5416,1270,6536,3842,6001,2086,1630,3900,3529,3828,8364,8099,2981,8632,5715,9024,4983,7431,7000,1612,2532,9415,3961,5368,6802,3705,3614,3504,1738,8329,5156,7402,2636,4297,2400,4139,6137,6804,8063,6539,9965,6429,4037,2229,4325,7979,1651,8253,7151,5265,5128,8976,3064,7741,7750,5063,7069,4183,7096,8610,2233,8325,2184,9841,5248,1640,8896,3481,5476,3964,2396,7857,2025,1853,5804,1246,5926,2284,7144,9995,4353,6032,5121,1948,3037,8163,5690,8598,8804,5987,1656,8720,6581,7764,2287,2393,4848,7618,3987,8991,7240,6657,2514,5506,1294,1152,1467,5979,6151,6754,1929,9449,6106,7587,4597,6489,1033,3872,3056,9052,2736,6243,3224,1925,8352,6920,4807,3150,9775,9218,7092,6187,4430,8139,7174,4850,5001,5951,7877,8297,4729,8073,4049,6704,9580,7809,3034,7317,6928,6096,8682,1424,9693,9754,2455,1189,6189,7838,3019,6681,2164,2062,8240,2201,2843,4578,2852,4301,1992,5217,8424,6306,4378,7933,6914,6085,1519,3528,7432,6922,1561,7262,4525,7140,7502,9671,8262,1709,4010,8319,9796,9802,1573,3369,6631,5573,1382,4823,6121,6350,4710,3791,5105,3939,7919,6476,6041,2430,7031,1425,3409,9001,8936,9926,8052,3076,2087,2275,8405,2154,6331,7032,8634,8562,9293,5017,5292,7769,8166,2452,7890,2795,7410,2448,6142,3461,7203,7436,6649,8197,4061,4514,9885,7680,7581,1299,4737,8687,3684,4549,7753,3708,1838,8745,1927,3316,8061,5107,3147,4912,9790,7559,7846,8290,7364,3784,5542,4359,1819,9633,1397,2909,4310,9973,6722,6279,1737,6830,3497,9127,9287,3236,2346,9982,3069,9428,3264,3403,9744,2157,4038,3115,3294,1310,6088,2771,8749,8689,8535,7239,6407,2828,9660,5643,6766,2349,1768,6482,8362,9875,5569,4531,2553,5510,6679,9006,4568,4787,1931,3237,4812,3852,8444,7059,2477,1276,1997,8526,5430,8540,4731,5680,1692,4202,1700,1523,8619,7763,8796,5855,9743,3437,2089,2355,5305,3018,6355,9463,5323,4671,3761,5473,9461,7959,6734,6655,9358,1436,3266,1648,6724,9089,1728,9442,5656,6861,7699,5161,2107,2569,7413,7678,8705,5824,8534,7118,3953,4952,2901,4558,8154,8811,3399,8780,8422,6245,6374,4169,3771,1787,5437,8195,9810,2171,1111,6713,9542,6764,1186,4895,4862,2609,7522,1231,7231,4845,7477,5729,3199,7398,3826,1050,3755,9222,5998,3752,9852,8177,9972,6926,7121,1707,8840,3205,5125,5074,4328,5274,5849,6391,2028,4661,8567,6362,4241,1545,8084,4756,8415,7423,5358,4631,2607,2026,5831,1497,6297,5311,4131,3314,7938,1252,6133,1755,4693,3850,5365,8013,1619,7561,9360,2357,2204,1432,1773,4239,7111,4724,5104,5745,5454,4773,7808,2661,6102,5696,2583,2774,1717,8086,4798,6999,3032,6359,9582,2457,7742,9069,5874,9822,7434,9672,8488,2066,9104,6267,1677,1806,4981,6543,9471,5003,5491,5361,1378,5639,6584,9749,1880,9902,6038,9703,1552,9349,5970,1352,4330,6850,5899,5287,9419,5038,3990,9776,3536,2850,7451,4784,7689,8873,7391,9548,6125,7540,8143,6755,2013,9018,4892,4747,1769,4664,6575,5779,7483,9815,9144,1209,2994,9820,3760,3256,1826,9663,3323,5889,3995,7627,3084,6431,4650,8815,2874,1135,1226,5674,6260,8711,8266,3899,4083,3329,2624,8636,8826,7878,4341,3470,1919,4926,7813,7510,9056,4622,4885,3473,6786,2281,7752,7248,1439,9155,8954,3246,1822,5976,9138,7662,8573,7324,9878,5321,3260,1448,3697,9284,3576,2551,1624,3163,5606,8375,3981,6113,3619,5941,4774,3476,5335,5887,2291,8091,5641,5045,3854,4914,6585,9226,1965,5394,3498,2853,1364,2041,2213,2890,9448,4625,9553,1472,7712,2406,6256,1653,9206,4542,6164,5564,9967,8310,5713,5857,6244,9645,6877,4716,8558,4704,4243,5739,5819,9836,1503,6323,5424,4623,7250,5255,8628,3258,9814,1474,8680,3307,8520,1214,6240,9055,8041,9813,7349,2435,2510,9338,7099,4388,8651,6456,5514,9884,3324,2382,7705,7005,6108,2567,9935,9310,2666,8277,1208,9235,7405,2098,9456,1341,9119,5654,1024,9949,7758,4208,2878,8429,3821,9073,3797,9414,6653,7167,1898,8543,1809,9957,1674,8783,6003,8973,9392,2085,3089,3602,5919,6937,6480,4477,3623,1962,4566,9740,9116,9269,2131,5924,8404,2931,7673,8955,5245,2491,6645,8758,5360,8015,8218,6515,9072,9316,7173,6726,5267,3790,5403,5204,2935,5828,3117,9863,7238,7855,3860,2789,6084,2975,8709,5339,4218,5396,2408,2272,1011,8123,5981,6588,3099,2827,1094,2020,4955,4648,5753,6171,6810,5205,4135,2412,9870,6203,7650,3739,8241,4908,3341,1265,2168,4162,6687,2990,1854,4113,4376,2841,1225,7453,2196,5927,1632,4959,9210,7554,8278,5210,4408,4585,6122,4452,2297,5794,2516,6742,2535,1444,5353,8206,5366,9732,6834,7175,3343,4228,2617,9706,4751,5140,9397,8588,4467,5226,1598,4667,8223,2594,2922,8299,9250,8590,1571,1365,4054,8830,1631,5798,8863,3627,1302,2383,3297,2363,9511,8778,4503,1563,3560,9286,6541,7343,4152,5270,3462,6101,6337,2881,8591,9791,6670,3888,2939,7473,8104,8704,7736,9757,6427,4584,8538,2845,6389,5960,7898,7518,8710,9984,1658,4068,8308,8201,2353,8658,3394,9123,6909,7047,7411,5241,1799,5450,7482,2163,3440,6349,1506,9348,5289,9242,8990,4034,5151,4870,9598,3255,2515,4461,2225,4160,9828,1035,1235,9385,6274,6800,1414,5069,9238,5049,9855,7333,8423,3645,8659,7309,3428,4565,5599,2473,6744,3753,9571,6787,8565,4539,8085,3401,4673,2008,5896,8972,2141,6184,2817,8410,7185,7847,5617,8193,6380,2889,2708,1007,1216,4285,9375,1348,1601,7359,7450,2045,3777,8546,4224,1848,9953,8483,6213,3661,8003,3269,1090,8178,9914,1954,7826,2814,7347,8033,3352,3767,2950,4026,3233,4883,4522,1718,3813,8594,4560,4177,3983,9839,9832,8461,4795,9861,1492,7691,3494,3868,3198,8924,3611,9208,2474,7936,9337,2068,5407,1650,8184,5969,7971,1924,1928,9552,7606,6325,7943,9386,2411,5427,6147,9074,3818,5792,4240,3637,9843,4213,9336,9033,7242,4686,9996,7201,2421,8088,3949,1610,7535,5282,7781,8027,1916,5726,4479,1615,3631,7694,3284,5493,1921,7805,2614,1188,6177,8852,9596,5521,3808,5784,6891,4476,2345,7094,4199,1190,6071,2416,5099,7489,1018,8695,5838,4386,8626,5917,3776,6320,1057,5866,7159,1508,2803,8051,2942,4709,6347,7298,3283,5304,3321,9479,1607,9531,4636,5464,5894,3452,3517,8408,2672,9411,7564,9846,6228,2065,8118,2691,9249,4534,7830,5449,3557,7637,3168,8427,6007,2639,6059,6011,6302,1308,4453,2769,4643,8905,6475,1484,9328,5768,1736,2420,3855,7946,6330,2214,1423,4982,1699,8132,7922,3880,1179,2670,3085,9675,2303,2702,3709,6509,1843,8805,5890,7403,6338,6329,8151,8697,7158,1287,6518,6045,2039,4204,2132,7011,3613,6514,7884,2203,2175,2725,3029,3827,4004,5478,7575,6638,6204,6040,3492,8071,6549,2212,7131,1380,2235,4835,8208,8010,4347,5722,2675,7850,9678,9504,6442,3596,5809,9603,3254,9864,7738,7189,8522,5788,3941,6226,2331,5033,3980,5221,2898,4381,1087,1089,7504,9907,2360,5720,8737,4700,5489,9951,5371,7585,2050,7310,9963,1735,7520,8256,1502,3616,4458,1705,6685,9068,8761,4902,3807,4262,8848,3167,1567,9095,9180,7249,5915,7106,8545,4056,6510,7497,5986,2293,4924,1528,9872,9789,8943,1022,7033,2719,5039,7539,3741,5912,6057,7078,7651,8599,5787,7729,8089,3491,8874,3415,3200,8620,8326,8856,4490,9869,6682,7179,2174,9339,6924,8690,6985,7768,8462,8486,5006,1979,9289,5442,2288,6116,2009,5487,1998,2669,2865,8471,1744,1901,2344,2437,5031,7311,3586,2380,4234,7169,9460,6989,5911,2498,1393,5196,3197,9475,4097,9457,1269,2245,1074,5978,9094,8447,4498,2517,6775,7429,7109,9616,5438,6385,7551,9709,8727,5004,7616,1501,5733,9476,7534,9759,9231,8037,7233,1888,3469,6711,5171,1657,7962,7114,6552,3804,5066,1223,1682,7512,4385,4502,2737,9469,7973,5154,5346,4035,9653,8657,7740,8160,9330,7414,1679,5929,6468,2313,3672,7363,7214,1064,3687,6132,7671,8068,6225,4720,8378,3365,5727,5664,4387,9161,7397,8481,6120,7457,1978,3715,4314,5956,5975,3130,8356,1160,6882,7475,3641,1688,6750,5718,9373,7145,1072,7228,4016,9502,5922,7777,9307,4269,7435,4125,2957,1862,5741,7985,2176,4272,8744,7390,2153,7117,9523,4606,9084,3537,2000,5725,1543,8942,4733,6838,1357,2262,8668,4264,2497,2766,3349,6423,2188,3146,1295,5440,6166,6689,3448,3751,2069,6793,4419,5000,5501,3020,8401,9142,2867,7698,3759,8743,4616,3410,6285,3882,1722,1985,3773,3954,4993,7156,7180,8233,7184,4665,1293,1740,8880,4173,4393,8691,8258,6366,6652,4630,2556,6739,5297,6982,7949,1096,1067,6756,3756,3337,3956,1635,9639,5055,8097,1114,3426,4433,3845,6264,3362,6251,4619,4638,2134,6784,9425,1170,5609,8110,1241,9521,3669,1637,2772,6910,7221,7560,3817,1283,4337,3838,1395,6134,1445,7687,4559,9858,7211,6250,6327,4853,9599,9753,9236,8994,6219,9512,3915,4658,3927,1660,7670,7632,9569,9795,8559,7542,4760,9099,7762,1739,1479,9011,6180,9714,2324,1726,4786,3558,8121,1812,2314,5229,9912,3847,7440,5183,7076,2222,7225,3523,1667,6904,8164,9314,9797,2230,3310,1730,6336,1507,9518,1080,2970,1652,3550,7841,9560,2503,4474,7022,5496,1028,3372,6401,4133,1852,8227,5283,3326,2858,3609,7220,6941,1046,8209,1477,5658,7927,1857,4601,2604,4587,7759,4736,4632,1427,3271,1784,7488,4082,3261,9294,9785,9334,6770,3873,4968,4688,5231,8630,3642,1256,3649,2111,1608,5219,3693];
+
+// ============================================================
+// AUTH
+// ============================================================
+document.getElementById('LBTN').onclick     = doLogin;
+document.getElementById('UPW').onkeydown    = function(e){if(e.key==='Enter') doLogin()};
+document.getElementById('UID').onkeydown    = function(e){if(e.key==='Enter') document.getElementById('UPW').focus()};
+
+function doLogin(){
+  // UID: uppercase for matching | Password: exact as typed (case-sensitive)
+  var uRaw = document.getElementById('UID').value.trim();
+  var u    = uRaw.toUpperCase();
+  var p    = document.getElementById('UPW').value; // NO trim — preserve exact input
+  var err  = document.getElementById('LERR');
+  err.style.display = 'none';
+
+  if(!uRaw || !p){ err.style.display='block'; return; }
+
+  // ── Admin check ──────────────────────────────────────────
+  if(ADMINS[u]){
+    if(p !== ADMINS[u].pass){
+      err.style.display='block'; return;
+    }
+    ME = {id:u, isAdmin:true, role:ADMINS[u].role, label:ADMINS[u].label, badge:ADMINS[u].badge};
+    launch();
+    return;
+  }
+
+  // ── Student check: SZ0001 – SZ2500 ──────────────────────
+  var m = u.match(/^SZ0*(\d+)$/);
+  if(!m){ err.style.display='block'; return; }
+  var n = parseInt(m[1]);
+  if(n < 1 || n > 2500){ err.style.display='block'; return; }
+  var pin = String(VOTER_PINS[n - 1]);
+  if(p !== pin){ err.style.display='block'; return; }
+
+  ME = {id:'SZ'+String(n).padStart(4,'0'), isAdmin:false};
+  launch();
+}
+
+function launch(){
+  document.getElementById('PG_LOGIN').style.display = 'none';
+  document.getElementById('PG_APP').style.display   = 'block';
+  document.getElementById('VLB').textContent = ME.isAdmin ? '👤 Admin' : ME.id;
+  SEL = {};
+
+  // Reset tab visibility every launch (important — keeps state clean between logins)
+  document.getElementById('T_vote').style.display      = 'none';
+  document.getElementById('T_result').style.display    = 'none';
+  document.getElementById('T_analytics').style.display = 'none';
+  document.getElementById('T_admin').style.display     = 'none';
+
+  if(ME.isAdmin){
+    // Show badge + role label in header
+    document.getElementById('VLB').textContent = ME.badge+' '+ME.label;
+
+    // Role-based tab visibility
+    if(can('results'))       document.getElementById('T_result').style.display    = '';
+    if(can('analytics'))     document.getElementById('T_analytics').style.display = '';
+    // Admin tab: only chief can access full admin panel
+    if(can('candidates')||can('voters')||can('reset')){
+      document.getElementById('T_admin').style.display = '';
+    }
+    buildAnnounce(); buildService();
+    go('result');
+  } else {
+    document.getElementById('T_vote').style.display = '';
+    buildAnnounce(); buildService();
+    if(FIREBASE_READY){
+      // Show loading indicator
+      document.getElementById('PRE_VOTE').style.display  = 'none';
+      document.getElementById('POST_VOTE').style.display = 'none';
+      var vp = document.getElementById('P_vote');
+      var ld = document.getElementById('VOTE_LOADING');
+      if(!ld){
+        ld = document.createElement('div');
+        ld.id = 'VOTE_LOADING';
+        ld.style.cssText = 'text-align:center;padding:60px 20px;color:#7B1C2E;font-size:15px;';
+        ld.innerHTML = '⏳ Loading your ballot...';
+        vp.insertBefore(ld, vp.firstChild);
+      }
+      ld.style.display = 'block';
+      // Firebase may have already loaded data before login — try immediately
+      renderVotePage();
+      // Also set a fallback: if still loading after 3 seconds, force render
+      setTimeout(function(){
+        if(ME && !ME.isAdmin){
+          renderVotePage();
+        }
+      }, 3000);
+    } else {
+      renderVotePage();
+    }
+    go('vote');
+  }
+}
+
+function doLogout(){
+  // ── IMPORTANT: clear session state but KEEP VS (vote records must survive logout) ──
+  ME  = null;
+  SEL = {};
+  // Hide app, show login
+  document.getElementById('PG_APP').style.display   = 'none';
+  document.getElementById('PG_LOGIN').style.display = 'flex';
+  document.getElementById('UID').value = '';
+  document.getElementById('UPW').value = '';
+  document.getElementById('LERR').style.display = 'none';
+  // DO NOT touch PRE_VOTE / POST_VOTE here — renderVotePage() will set them on next login
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function go(t){
+  ['vote','result','analytics','announce','service','admin'].forEach(function(x){
+    var p = document.getElementById('P_'+x);
+    var b = document.getElementById('T_'+x);
+    if(p) p.className = 'panel'+(x===t?' on':'');
+    if(b && b.style.display !== 'none') b.className = 'tb'+(x===t?' on':'');
+  });
+  if(t==='result')    bldResults();
+  if(t==='analytics') bldAnalytics();
+  if(t==='admin')     bldAdmin();
+}
+
+// ============================================================
+// VOTE PAGE STATE — single controller for PRE/POST
+// ============================================================
+function renderVotePage(){
+  if(!ME || ME.isAdmin) return;
+  // Always hide loading indicator
+  var ld = document.getElementById('VOTE_LOADING');
+  if(ld) ld.style.display = 'none';
+  // Reset both screens before deciding which to show
+  document.getElementById('PRE_VOTE').style.display  = 'none';
+  document.getElementById('POST_VOTE').style.display = 'none';
+
+  if(hasVoted()){
+    // ── VOTED: hide ballot forever, show success screen ──
+    document.getElementById('PRE_VOTE').style.display  = 'none';
+    document.getElementById('POST_VOTE').style.display = 'block';
+    buildVoteSummary();
+  } else {
+    // ── NOT VOTED: show ballot ──
+    document.getElementById('PRE_VOTE').style.display  = 'block';
+    document.getElementById('POST_VOTE').style.display = 'none';
+    buildGrids();
+  }
+}
+
+// ============================================================
+// HAS VOTED — single definitive check
+// ============================================================
+function hasVoted(){
+  if(!ME || ME.isAdmin) return false;
+  var v = VS.get(ME.id);
+  return !!(v && v.headboy && v.headgirl && v.captain);
+}
+
+// ============================================================
+// BUILD VOTE SUMMARY (post-vote screen)
+// ============================================================
+function buildVoteSummary(){
+  var v  = VS.get(ME.id);
+  if(!v) return;
+  var el = document.getElementById('VOTE_SUMMARY');
+  el.innerHTML = '';
+  ['headboy','headgirl','captain'].forEach(function(role){
+    var c = getCand(role, v[role]);
+    var photoEl = (c && c.photo)
+      ? '<img class="vsphoto" src="'+c.photo+'" alt="'+c.name+'">'
+      : '<div class="vsphoto-fb" style="background:'+(c?HC[c.house]:'#999')+'">'+(c?c.name.charAt(0):'?')+'</div>';
+    var symEl = '';
+    if(c && c.symbolImg){
+      symEl = '<img src="'+c.symbolImg+'" alt="'+c.symbolName+'" style="width:20px;height:20px;object-fit:contain;margin-right:4px;vertical-align:middle">';
+    } else if(c && c.symbolName){
+      symEl = '<span style="font-size:11px;background:#F5F3EF;border:1px solid #DDD;border-radius:4px;padding:1px 5px;margin-right:5px">'+c.symbolName+'</span>';
+    }
+    var item = document.createElement('div');
+    item.className = 'vsitem';
+    item.innerHTML = photoEl+'<div><div class="vsrole">'+RL[role]+'</div><div class="vsname">'+symEl+(c?c.name:'—')+'</div></div>';
+    el.appendChild(item);
+  });
+}
+
+// ============================================================
+// BUILD CANDIDATE GRIDS
+// ============================================================
+function buildGrids(){
+  Object.keys(CD).forEach(function(role){
+    var g = document.getElementById('G_'+role);
+    if(!g) return;
+    g.innerHTML = '';
+    CD[role].forEach(function(c){
+      var hc    = HC[c.house];
+      var isSel = SEL[role] === c.id;
+      var d     = document.createElement('div');
+      d.className = 'cc' + (isSel ? ' sel' : '');
+      d.id = 'CC_'+c.id;
+
+      // Photo or initials
+      var photoHTML = c.photo
+        ? '<div class="cphoto-wrap"><img src="'+c.photo+'" alt="'+c.name+'"></div>'
+        : '<div class="cphoto-wrap" style="background:'+hc+'">'
+            + c.name.split(' ').map(function(w){return w[0]}).join('').substring(0,2)
+          + '</div>';
+
+      // Symbol: image if uploaded, else text name in circle
+      var symHTML = c.symbolImg
+        ? '<div class="csymbol"><img src="'+c.symbolImg+'" alt="'+c.symbolName+'" style="width:38px;height:38px;object-fit:contain;border-radius:4px"></div>'+
+          '<div class="csymbol-name">'+c.symbolName+'</div>'
+        : '<div class="csymbol csymbol-text">'+c.symbolName+'</div>';
+
+      d.innerHTML =
+        '<div class="ck">&#10003;</div>'+
+        photoHTML+
+        symHTML+
+        '<div class="cn">'+c.name+'</div>'+
+        '<div class="ccls">'+c.cls+'</div>'+
+        '<span class="hbdg" style="background:'+hc+'">'+c.house+'</span>';
+
+      (function(r,id){ d.onclick = function(){ pick(r,id); }; })(role, c.id);
+      g.appendChild(d);
+    });
+  });
+  updBar();
+}
+
+function pick(role, id){
+  var old = SEL[role];
+  if(old){ var el=document.getElementById('CC_'+old); if(el) el.classList.remove('sel'); }
+  if(old === id){ delete SEL[role]; }
+  else { SEL[role]=id; var el=document.getElementById('CC_'+id); if(el) el.classList.add('sel'); }
+  updBar();
+}
+
+function updBar(){
+  var roles = Object.keys(CD);
+  var done  = roles.filter(function(r){return SEL[r];}).length;
+  document.getElementById('SINFO').innerHTML = '<strong>'+done+'/'+roles.length+'</strong> categories selected';
+  document.getElementById('SBTN').disabled   = (done < roles.length);
+}
+
+// ============================================================
+// CONFIRM MODAL
+// ============================================================
+function openModal(){
+  if(!ME || ME.isAdmin) return;
+  if(hasVoted()){
+    // Extra safety — should never reach here but protect anyway
+    renderVotePage();
+    return;
+  }
+  var roles = Object.keys(CD);
+  for(var i=0; i<roles.length; i++){
+    if(!SEL[roles[i]]){ alert('Please select a candidate in all 3 categories.'); return; }
+  }
+  var list = document.getElementById('M_LIST');
+  list.innerHTML = '';
+  roles.forEach(function(role){
+    var c = getCand(role, SEL[role]);
+    var photoEl = (c && c.photo)
+      ? '<img src="'+c.photo+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover">'
+      : '';
+    var row = document.createElement('div');
+    row.className = 'citem';
+    var symMini = '';
+    if(c && c.symbolImg){
+      symMini = '<img src="'+c.symbolImg+'" alt="'+c.symbolName+'" style="width:18px;height:18px;object-fit:contain;margin-right:4px;vertical-align:middle">';
+    } else if(c && c.symbolName){
+      symMini = '<span style="font-size:11px;background:#F5F3EF;border:1px solid #DDD;border-radius:4px;padding:1px 5px;margin-right:5px">'+c.symbolName+'</span>';
+    }
+    row.innerHTML =
+      '<span class="crole">'+RL[role]+'</span>'+
+      '<span class="cval">'+photoEl+symMini+(c?c.name:'—')+'</span>';
+    list.appendChild(row);
+  });
+  document.getElementById('MODAL').classList.add('show');
+}
+
+function closeModal(){ document.getElementById('MODAL').classList.remove('show'); }
+
+// ============================================================
+// CONFIRM & RECORD VOTE — permanent, one-time only
+// ============================================================
+function confirmVote(){
+  // Guard 1: must be a student
+  if(!ME || ME.isAdmin){ closeModal(); return; }
+
+  // Guard 2: already voted — absolute block
+  if(hasVoted()){
+    closeModal();
+    renderVotePage();  // shows POST_VOTE screen
+    return;
+  }
+
+  // Guard 3: all 4 choices must be present
+  var roles = Object.keys(CD);
+  for(var i=0; i<roles.length; i++){
+    if(!SEL[roles[i]]){
+      closeModal();
+      alert('Please select a candidate in all 4 categories.');
+      return;
+    }
+  }
+
+  // ── WRITE VOTE — single atomic record ──
+  VS.set(ME.id, {
+    headboy:  SEL.headboy,
+    headgirl: SEL.headgirl,
+    captain:  SEL.captain,
+    ts:       new Date().toISOString()
+  });
+
+  // Clear session selections immediately after writing
+  SEL = {};
+  closeModal();
+
+  // Switch to post-vote view — ballot is permanently hidden
+  document.getElementById('PRE_VOTE').style.display  = 'none';
+  document.getElementById('POST_VOTE').style.display = 'block';
+  buildVoteSummary();
+}
+
+// ============================================================
+// VOTE COUNTING — iterates VS (every key = one confirmed voter)
+// ============================================================
+function cntVotes(){
+  var c = {};
+  Object.keys(CD).forEach(function(role){
+    c[role] = {};
+    CD[role].forEach(function(x){ c[role][x.id] = 0; });
+  });
+  VS.keys().forEach(function(vid){
+    var v = VS.get(vid);
+    if(!v || !v.headboy || !v.headgirl || !v.captain) return;
+    ['headboy','headgirl','captain'].forEach(function(role){
+      if(c[role] && v[role] && c[role][v[role]] !== undefined){
+        c[role][v[role]] += 1;
+      }
+    });
+  });
+  return c;
+}
+
+// ============================================================
+// RESULTS (admin only)
+// ============================================================
+function bldResults(){
+  var counts = cntVotes();
+  var el = document.getElementById('R_BODY');
+  el.innerHTML = '';
+  Object.keys(CD).forEach(function(role){
+    var sec  = document.createElement('div'); sec.className = 'rsec';
+    sec.innerHTML = '<div class="rsect">'+RL[role]+'</div>';
+    var card = document.createElement('div'); card.className = 'rcard';
+    var sorted = CD[role].slice().sort(function(a,b){
+      return (counts[role][b.id]||0) - (counts[role][a.id]||0);
+    });
+    var mx = Math.max.apply(null, sorted.map(function(c){return counts[role][c.id]||0}).concat([1]));
+    sorted.forEach(function(c, i){
+      var v   = counts[role][c.id] || 0;
+      var pct = Math.round(v / mx * 100);
+      var photoEl = c.photo
+        ? '<img class="rphoto" src="'+c.photo+'" alt="'+c.name+'">'
+        : '<div class="rphoto-fb" style="background:'+HC[c.house]+'">'+c.name.charAt(0)+'</div>';
+      // Symbol in results
+      var rSymHTML = c.symbolImg
+        ? '<div class="rsymbol-badge"><img src="'+c.symbolImg+'" alt="'+c.symbolName+'" style="width:26px;height:26px;object-fit:contain"></div>'
+        : '<div class="rsymbol-badge" style="font-size:11px;font-weight:600;color:var(--m)">'+c.symbolName+'</div>';
+      var row = document.createElement('div');
+      row.className = 'rrow' + (i===0?' winner-row':'');
+      row.innerHTML =
+        '<div class="rrank">'+(i+1)+'</div>'+
+        photoEl+
+        rSymHTML+
+        '<div style="flex:1">'+
+          '<div class="rname">'+c.name+(i===0?'<span class="crwn">&#9733;</span>':'')+'</div>'+
+          '<div class="rho">'+c.house+' House &middot; '+c.cls+'</div>'+
+        '</div>'+
+        '<div class="rbarbg"><div class="rbar" style="width:'+pct+'%;background:'+HC[c.house]+'"></div></div>'+
+        '<div class="rv">'+v+'</div>';
+      card.appendChild(row);
+    });
+    sec.appendChild(card);
+    el.appendChild(sec);
+  });
+}
+
+// ============================================================
+// ANALYTICS (admin only)
+// ============================================================
+function bldAnalytics(){
+  var counts = cntVotes();
+  var total  = VS.keys().length;
+  var ht     = {Garnet:0, Sapphire:0, Emerald:0, Citrine:0};
+  Object.keys(CD).forEach(function(role){
+    CD[role].forEach(function(c){ ht[c.house] += (counts[role][c.id]||0); });
+  });
+  var mxH = Math.max.apply(null, Object.values(ht).concat([1]));
+  var el  = document.getElementById('A_BODY');
+  el.innerHTML =
+    '<div class="agrid">'+
+    '<div class="acard"><div class="anum">'+total+'</div><div class="albl">Votes Cast</div></div>'+
+    '<div class="acard"><div class="anum">2500</div><div class="albl">Registered Voters</div></div>'+
+    '<div class="acard"><div class="anum">'+Math.round(total/2500*100)+'%</div><div class="albl">Turnout</div></div>'+
+    '<div class="acard"><div class="anum">16</div><div class="albl">Candidates</div></div>'+
+    '<div class="acard"><div class="anum">4</div><div class="albl">Positions</div></div>'+
+    '</div>'+
+    '<div class="cbox"><h3>Votes by House</h3>'+
+    ['Garnet','Sapphire','Emerald','Citrine'].map(function(h){
+      return '<div class="hrow">'+
+        '<div class="hname" style="color:'+HC[h]+'">'+h+'</div>'+
+        '<div class="hbarbg"><div class="hbarr" style="width:'+Math.round(ht[h]/mxH*100)+'%;background:'+HC[h]+'"></div></div>'+
+        '<div class="hlbl" style="color:'+HC[h]+'">'+ht[h]+' votes</div></div>';
+    }).join('')+'</div>'+
+    Object.keys(CD).map(function(role){
+      var sorted = CD[role].slice().sort(function(a,b){return(counts[role][b.id]||0)-(counts[role][a.id]||0)});
+      var mx = Math.max.apply(null,sorted.map(function(c){return counts[role][c.id]||0}).concat([1]));
+      return '<div class="cbox"><h3>'+RL[role]+' — Breakdown</h3>'+
+        sorted.map(function(c){
+          return '<div class="hrow">'+
+            '<div style="min-width:36px;text-align:center;font-size:10px;font-weight:600;color:var(--m)">'+(c.symbolImg?'<img src="'+c.symbolImg+'" style="width:18px;height:18px;object-fit:contain">':c.symbolName)+'</div>'+
+            '<div class="hname" style="color:'+HC[c.house]+';width:100px;font-size:12px">'+c.name.split(' ')[0]+'</div>'+
+            '<div class="hbarbg"><div class="hbarr" style="width:'+Math.round((counts[role][c.id]||0)/mx*100)+'%;background:'+HC[c.house]+'"></div></div>'+
+            '<div class="hlbl">'+(counts[role][c.id]||0)+'</div></div>';
+        }).join('')+'</div>';
+    }).join('');
+}
+
+// ============================================================
+// ANNOUNCEMENTS
+// ============================================================
+function buildAnnounce(){
+  var el = document.getElementById('ANN_LIST'); el.innerHTML = '';
+  ANNS.slice().reverse().forEach(function(a){
+    var d = document.createElement('div'); d.className='abox';
+    d.innerHTML='<div class="atit">'+a.title+'</div><div class="abod">'+a.body+'</div><div class="adat">'+a.date+'</div>';
+    el.appendChild(d);
+  });
+}
+
+function buildService(){
+  var el = document.getElementById('SVC_LIST'); el.innerHTML='';
+  SVCS.forEach(function(s){
+    var d=document.createElement('div'); d.className='svcard';
+    d.innerHTML='<h3>'+s.title+'</h3><p>'+s.desc+'</p><div>'+s.tags.map(function(t){return'<span class="svtag">'+t+'</span>'}).join('')+'</div>';
+    el.appendChild(d);
+  });
+}
+
+function postAnn(){
+  var t=document.getElementById('ANN_T').value.trim();
+  var b=document.getElementById('ANN_B').value.trim();
+  if(!t||!b){alert('Fill in title and message.');return;}
+  ANNS.push({title:t,body:b,date:'Today'});
+  if(FIREBASE_READY && ANNS_REF){ ANNS_REF.set(ANNS); }
+  document.getElementById('ANN_T').value='';
+  document.getElementById('ANN_B').value='';
+  buildAnnounce();
+  bldAnnAdmin();
+}
+
+function bldAnnAdmin(){
+  var el=document.getElementById('ANN_PREV'); el.innerHTML='';
+  ANNS.slice().reverse().forEach(function(a){
+    var d=document.createElement('div');d.className='abox';
+    d.innerHTML='<div class="atit">'+a.title+'</div><div class="abod">'+a.body+'</div><div class="adat">'+a.date+'</div>';
+    el.appendChild(d);
+  });
+}
+
+// ============================================================
+// ADMIN — CANDIDATE EDITOR (with photo + symbol)
+// ============================================================
+function bldCandTbls(){
+  var el=document.getElementById('CAND_TBLS'); el.innerHTML='';
+  Object.keys(CD).forEach(function(role){
+    var wrap=document.createElement('div'); wrap.style.marginBottom='28px';
+    wrap.innerHTML='<div style="font-size:13px;font-weight:600;color:var(--m);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em">'+RL[role]+'</div>';
+    var tbl=document.createElement('table'); tbl.className='ctbl';
+    tbl.innerHTML='<tr><th>Photo</th><th>Name</th><th>Class</th><th>House</th><th>Symbol</th><th>Save</th></tr>';
+    CD[role].forEach(function(c){
+      var prevId='PREV_'+c.id; var fileId='FILE_'+c.id;
+      var thumbHTML = c.photo
+        ? '<img class="photo-thumb" src="'+c.photo+'">'
+        : '<div class="photo-tbl-fb" style="background:'+HC[c.house]+'">'+c.name.charAt(0)+'</div>';
+      var tr=document.createElement('tr');
+      tr.innerHTML=
+        '<td>'+
+          '<div style="display:flex;flex-direction:column;align-items:center;gap:5px">'+
+            '<div id="'+prevId+'" style="width:40px;height:40px;border-radius:50%;overflow:hidden">'+thumbHTML+'</div>'+
+            '<label style="font-size:11px;color:var(--m);cursor:pointer;font-weight:600">&#128247; Upload'+
+              '<input type="file" accept="image/*" id="'+fileId+'" style="display:none" onchange="handlePhoto(\''+c.id+'\',\''+prevId+'\',this)">'+
+            '</label>'+
+          '</div>'+
+        '</td>'+
+        '<td><input class="cedit" id="CE_name_'+c.id+'" value="'+c.name+'"></td>'+
+        '<td><input class="cedit" id="CE_cls_'+c.id+'"  value="'+c.cls+'" style="width:90px"></td>'+
+        '<td><select class="hsel" id="CE_house_'+c.id+'">'+
+          ['Garnet','Sapphire','Emerald','Citrine'].map(function(h){
+            return '<option value="'+h+'"'+(c.house===h?' selected':'')+'>'+h+'</option>';
+          }).join('')+
+        '</select></td>'+
+        '<td>'+
+          '<div style="display:flex;flex-direction:column;align-items:center;gap:5px">'+
+            '<div id="SYMPREV_'+c.id+'" style="width:40px;height:40px;border:1px solid var(--bd);border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#F9F7F5;font-size:10px;font-weight:600;color:var(--m)">'+
+              (c.symbolImg ? '<img src="'+c.symbolImg+'" style="width:38px;height:38px;object-fit:contain">' : (c.symbolName||'No img'))+
+            '</div>'+
+            '<label style="font-size:11px;color:var(--m);cursor:pointer;font-weight:600">&#128247; Upload'+
+              '<input type="file" accept="image/*" id="SYMFILE_'+c.id+'" style="display:none" onchange="handleSymbol(\''+c.id+'\',\'SYMPREV_'+c.id+'\',this)">'+
+            '</label>'+
+            '<input class="cedit" id="CE_symname_'+c.id+'" value="'+c.symbolName+'" placeholder="Symbol name" style="width:70px;font-size:11px;text-align:center">'+
+          '</div>'+
+        '</td>'+
+        '<td><button class="bsave" onclick="saveCand(\''+role+'\',\''+c.id+'\')">Save</button></td>';
+      tbl.appendChild(tr);
+    });
+    wrap.appendChild(tbl);
+    el.appendChild(wrap);
+  });
+}
+
+function handlePhoto(candId, prevId, input){
+  if(!input.files||!input.files[0]) return;
+  var file=input.files[0];
+  if(!file.type.startsWith('image/')){ alert('Select an image file.'); return; }
+  if(file.size>5*1024*1024){ alert('Image too large. Use a file under 5MB.'); return; }
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var url=e.target.result;
+    var prev=document.getElementById(prevId);
+    if(prev) prev.innerHTML='<img class="photo-thumb" src="'+url+'">';
+    Object.keys(CD).forEach(function(role){
+      CD[role].forEach(function(c){ if(c.id===candId) c.photo=url; });
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleSymbol(candId, prevId, input){
+  if(!input.files||!input.files[0]) return;
+  var file=input.files[0];
+  if(!file.type.startsWith('image/')){ alert('Select an image file (JPG, PNG, etc).'); return; }
+  if(file.size>3*1024*1024){ alert('Image too large. Use under 3MB.'); return; }
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var url=e.target.result;
+    var prev=document.getElementById(prevId);
+    if(prev) prev.innerHTML='<img src="'+url+'" style="width:38px;height:38px;object-fit:contain">';
+    Object.keys(CD).forEach(function(role){
+      CD[role].forEach(function(c){ if(c.id===candId){ c.symbolImg=url; } });
+    });
+    buildGrids();
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveCand(role, id){
+  var c=CD[role].find(function(x){return x.id===id}); if(!c) return;
+  c.name       = document.getElementById('CE_name_'+id).value.trim() || c.name;
+  c.cls        = document.getElementById('CE_cls_'+id).value.trim()  || c.cls;
+  c.house      = document.getElementById('CE_house_'+id).value;
+  c.symbolName = document.getElementById('CE_symname_'+id).value.trim() || c.symbolName;
+  bldCandTbls();
+  buildGrids();
+  // Push updated candidates to Firebase so ALL devices sync instantly
+  if(FIREBASE_READY && CANDS_REF){
+    CANDS_REF.set(CD);
+  }
+  alert('Saved: '+c.name+' ['+c.symbolName+']');
+}
+
+// ============================================================
+// ADMIN — VOTER LOG
+// ============================================================
+function bldVoterLog(){
+  var voters = VS.entries().filter(function(e){ return e[1] && e[1].headboy; });
+  var count  = voters.length;
+
+  // Always update count
+  document.getElementById('VCNT').textContent = count;
+
+  // Always show/hide reset button based on permission
+  var resetBtn = document.getElementById('RESET_BTN');
+  if(resetBtn) resetBtn.style.display = can('reset') ? '' : 'none';
+
+  // Build table
+  var el = document.getElementById('VOTER_TBL');
+  if(!count){
+    el.innerHTML = '<div style="padding:16px;font-size:13px;color:var(--mu);background:#F9F7F5;border-radius:10px;text-align:center">No votes have been cast yet.</div>';
+    return;
+  }
+  el.innerHTML =
+    '<table class="vtbl">'+
+    '<tr><th>Voter ID</th><th>Head Boy</th><th>Head Girl</th><th>Captain</th><th>Vice Capt.</th><th>Time</th></tr>'+
+    voters.map(function(kv){
+      var id=kv[0], v=kv[1];
+      var c1=getCand('headboy',v.headboy),  c2=getCand('headgirl',v.headgirl);
+      var c3=getCand('captain',v.captain);
+      var ts=v.ts ? new Date(v.ts).toLocaleTimeString() : '—';
+      return '<tr>'+
+        '<td><strong>'+id+'</strong></td>'+
+        '<td>'+(c1?'['+c1.symbolName+'] '+c1.name.split(' ')[0]:'—')+'</td>'+
+        '<td>'+(c2?'['+c2.symbolName+'] '+c2.name.split(' ')[0]:'—')+'</td>'+
+        '<td>'+(c3?'['+c3.symbolName+'] '+c3.name.split(' ')[0]:'—')+'</td>'+
+        '<td>'+(c4?'['+c4.symbolName+'] '+c4.name.split(' ')[0]:'—')+'</td>'+
+        '<td>'+ts+'</td>'+
+        '</tr>';
+    }).join('')+
+    '</table>';
+}
+
+function resetVotes(){
+  if(!can('reset')){ alert('You do not have permission to reset votes.'); return; }
+  if(!confirm('This will permanently delete ALL votes. This cannot be undone.')) return;
+  var ans = prompt('Type CONFIRM to reset all votes:');
+  if(ans === null){ return; } // user clicked Cancel
+  if(ans !== 'CONFIRM'){ alert('Reset cancelled. You must type CONFIRM exactly.'); return; }
+
+  // ── Clear all vote records completely ──
+  VS.clear();
+  SEL = {};
+
+  // ── If a student is somehow logged in, refresh their vote page ──
+  if(ME && !ME.isAdmin) renderVotePage();
+
+  // ── Refresh voter log count ──
+  bldVoterLog();
+
+  // ── Refresh results and analytics if visible ──
+  bldResults();
+  bldAnalytics();
+
+  alert('✓ All votes have been reset successfully. Voters can now vote again.');
+}
+
+// ============================================================
+// ADMIN — CHANGE PASSWORD
+// ============================================================
+function changePass(){
+  if(!ME || ME.role !== 'chief'){ alert('Only Chief Coordinator can change passwords.'); return; }
+  var pwOld = document.getElementById('PW_OLD').value.trim();
+  var pwNew = document.getElementById('PW_NEW').value.trim();
+  var pwCon = document.getElementById('PW_CON').value.trim();
+  var ok  = document.getElementById('PW_OK');
+  var err = document.getElementById('PW_ERR');
+  ok.style.display='none'; err.style.display='none';
+
+  // Which account to change — select from dropdown
+  var accKey = document.getElementById('PW_ACCT') ? document.getElementById('PW_ACCT').value : 'CHIEF';
+  if(!ADMINS[accKey]){ err.textContent='Invalid account selected.'; err.style.display='block'; return; }
+  if(pwOld !== ADMINS['CHIEF'].pass){ err.textContent='Your current Chief password is incorrect.'; err.style.display='block'; return; }
+  if(pwNew.length < 6){ err.textContent='New password must be at least 6 characters.'; err.style.display='block'; return; }
+  if(pwNew !== pwCon){ err.textContent='Passwords do not match.'; err.style.display='block'; return; }
+
+  ADMINS[accKey].pass = pwNew;
+  document.getElementById('PW_OLD').value='';
+  document.getElementById('PW_NEW').value='';
+  document.getElementById('PW_CON').value='';
+  ok.style.display='block';
+  ok.textContent = '✓ Password for '+ADMINS[accKey].label+' changed successfully.';
+}
+
+// ============================================================
+// ADMIN TAB SWITCHER
+// ============================================================
+function admTab(t){
+  ['candidates','announcements','voters','password'].forEach(function(x){
+    var panel = document.getElementById('ADM_'+x);
+    if(panel) panel.className='adm-sub'+(x===t?' on':'');
+  });
+  // Update only the buttons actually rendered in the dynamic tab bar
+  document.querySelectorAll('.adm-tabs .atb').forEach(function(btn){
+    btn.className = 'atb'+(btn.dataset.tab===t?' on':'');
+  });
+  if(t==='voters')       bldVoterLog();
+  if(t==='candidates')   bldCandTbls();
+  if(t==='announcements') bldAnnAdmin();
+}
+
+function bldAdmin(){
+  // Build admin sub-tabs based on role permissions
+  // Fill role banner
+  var roleDescs = {
+    chief:     'Full access: candidates, results, analytics, voter log, reset votes, announcements, passwords',
+    security:  'Access: results, analytics, voter log, reset votes',
+    vsecurity: 'Access: results, analytics, voter log (read-only)',
+    viewer:    'Access: results and analytics only (read-only)'
+  };
+  var rb = document.getElementById('ROLE_BADGE');
+  var rl = document.getElementById('ROLE_LABEL');
+  var rd = document.getElementById('ROLE_DESC');
+  if(rb) rb.textContent = ME.badge||'';
+  if(rl) rl.textContent = ME.label||'';
+  if(rd) rd.textContent = roleDescs[ME.role]||'';
+
+  var admTabBar = document.querySelector('.adm-tabs');
+  if(admTabBar){
+    admTabBar.innerHTML = '';
+    var tabs = [
+      {key:'candidates',    label:'&#128100; Candidates',    perm:'candidates'},
+      {key:'announcements', label:'&#128226; Announcements', perm:'announcements'},
+      {key:'voters',        label:'&#128203; Voter Log',     perm:'voters'},
+      {key:'password',      label:'&#128274; Password',      perm:'password'}
+    ];
+    var first = null;
+    tabs.forEach(function(t){
+      // chief can do everything; password only for chief
+      var allowed = (t.perm === 'password' && ME.role === 'chief') ||
+                    (t.perm !== 'password' && can(t.perm));
+      if(!allowed) return;
+      if(!first) first = t.key;
+      var btn = document.createElement('button');
+      btn.className = 'atb';
+      btn.dataset.tab = t.key;
+      btn.innerHTML = t.label;
+      btn.onclick = (function(k){ return function(){ admTab(k); }; })(t.key);
+      admTabBar.appendChild(btn);
+    });
+    // Also show reset button only for security/chief
+    var resetBtn = document.getElementById('RESET_BTN');
+    if(resetBtn) resetBtn.style.display = can('reset') ? '' : 'none';
+
+    admTab(first || 'voters');
+  }
+}
+
+// ============================================================
+// HELPER
+// ============================================================
+function getCand(role, id){
+  if(!CD[role]) return null;
+  return CD[role].find(function(x){return x.id===id;}) || null;
+}
+
+// Start Firebase — waits for SDK to load, then connects
+_startFirebase();
+</script>
+</body>
+</html>
