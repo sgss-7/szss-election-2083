@@ -424,14 +424,13 @@ var CD = {
 // Step: console.firebase.google.com → Your Project → Project Settings → Your Apps → Config
 // ============================================================
 var FIREBASE_CONFIG = {
-  apiKey:            "AIzaSyBMGT32KyS5I7AccWONhAvtIMO9-PmJqk4",
-  authDomain:        "sgss-7-c9609.firebaseapp.com",
-  databaseURL:       "https://sgss-7-c9609-default-rtdb.firebaseio.com",
-  projectId:         "sgss-7-c9609",
-  storageBucket:     "sgss-7-c9609.firebasestorage.app",
-  messagingSenderId: "114967250510",
-  appId:             "1:114967250510:web:dca4515098b72506ffe51f",
-  measurementId:     "G-89D203FS3X"
+  apiKey:            "YOUR_NEW_API_KEY",
+  authDomain:        "szss-election-2083.firebaseapp.com",
+  databaseURL:       "https://szss-election-2083-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:         "szss-election-2083",
+  storageBucket:     "szss-election-2083.firebasestorage.app",
+  messagingSenderId: "YOUR_NEW_SENDER_ID",
+  appId:             "YOUR_NEW_APP_ID"
 };
 
 // ============================================================
@@ -595,7 +594,7 @@ var ME  = null; // {id, role, isAdmin}
 
 // ── ADMIN ACCOUNTS ──────────────────────────────────────────
 // role: 'chief'       → full access (candidates, results, analytics, voter log, reset, password, announcements)
-// role: 'security'    → results + analytics + voter log + reset votes only
+// role: 'security'    → results + analytics + voter log  only
 // role: 'vsecurity'   → results + analytics + voter log (NO reset)
 // role: 'viewer'      → results + analytics only (read-only)
 // ─────────────────────────────────────────────────────────────
@@ -1317,7 +1316,7 @@ function bldAdmin(){
   // Fill role banner
   var roleDescs = {
     chief:     'Full access: candidates, results, analytics, voter log, reset votes, announcements, passwords',
-    security:  'Access: results, analytics, voter log, reset votes',
+    security:  'Access: results, analytics, voter log',
     vsecurity: 'Access: results, analytics, voter log (read-only)',
     viewer:    'Access: results and analytics only (read-only)'
   };
