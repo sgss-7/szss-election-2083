@@ -449,6 +449,14 @@ var LS_KEY     = 'szss_votes_2083';
 function _lsLoad(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'{}'); }catch(e){ return {}; } }
 function _lsSave(d){ try{ localStorage.setItem(LS_KEY, JSON.stringify(d)); }catch(e){} }
 
+function _loadScript(src, cb){
+  var s = document.createElement('script');
+  s.src = src;
+  s.onload = cb;
+  s.onerror = function(){ cb(new Error('Failed: ' + src)); };
+  document.head.appendChild(s);
+}
+
 // Wait for Firebase SDK to be fully ready before initializing
 function _initFirebaseApp(){
   try {
@@ -498,14 +506,6 @@ function _startFirebase(){
 
 // Dynamically load Firebase SDK then init
 if(!FIREBASE_READY){ _vsCache = _lsLoad(); }
-
-function _loadScript(src, cb){
-  var s = document.createElement('script');
-  s.src = src;
-  s.onload = cb;
-  s.onerror = function(){ cb(new Error('Failed: ' + src)); };
-  document.head.appendChild(s);
-}
 
 function initFirebase(){
   if(!FIREBASE_READY || !VOTES_REF) return;
