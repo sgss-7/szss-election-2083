@@ -424,13 +424,14 @@ var CD = {
 // Step: console.firebase.google.com → Your Project → Project Settings → Your Apps → Config
 // ============================================================
 var FIREBASE_CONFIG = {
-  apiKey:            "PASTE_YOUR_NEW_KEY",
-  authDomain:        "szss-election-2083.firebaseapp.com",
-  databaseURL:       "https://szss-election-2083-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId:         "szss-election-2083",
-  storageBucket:     "szss-election-2083.firebasestorage.app",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId:             "PASTE_YOUR_APP_ID"
+  apiKey:            "AIzaSyBMGT32KyS5I7AccWONhAvtIMO9-PmJqk4",
+  authDomain:        "sgss-7-c9609.firebaseapp.com",
+  databaseURL:       "https://sgss-7-c9609-default-rtdb.firebaseio.com",
+  projectId:         "sgss-7-c9609",
+  storageBucket:     "sgss-7-c9609.firebasestorage.app",
+  messagingSenderId: "114967250510",
+  appId:             "1:114967250510:web:dca4515098b72506ffe51f",
+  measurementId:     "G-89D203FS3X"
 };
 
 // ============================================================
@@ -594,7 +595,7 @@ var ME  = null; // {id, role, isAdmin}
 
 // ── ADMIN ACCOUNTS ──────────────────────────────────────────
 // role: 'chief'       → full access (candidates, results, analytics, voter log, reset, password, announcements)
-// role: 'security'    → results + analytics + voter log  only
+// role: 'security'    → results + analytics + voter log + reset votes only
 // role: 'vsecurity'   → results + analytics + voter log (NO reset)
 // role: 'viewer'      → results + analytics only (read-only)
 // ─────────────────────────────────────────────────────────────
@@ -1225,18 +1226,17 @@ function bldVoterLog(){
   }
   el.innerHTML =
     '<table class="vtbl">'+
-    '<tr><th>Voter ID</th><th>Head Boy</th><th>Head Girl</th><th>Captain</th><th>Vice Capt.</th><th>Time</th></tr>'+
+    '<tr><th>Voter ID</th><th>Head Boy</th><th>Head Girl</th><th>House Captain</th><th>Time</th></tr>'+
     voters.map(function(kv){
       var id=kv[0], v=kv[1];
       var c1=getCand('headboy',v.headboy),  c2=getCand('headgirl',v.headgirl);
       var c3=getCand('captain',v.captain);
-      var ts=v.ts ? new Date(v.ts).toLocaleTimeString() : '—';
+      var ts=v.ts ? new Date(v.ts).toLocaleString() : '—';
       return '<tr>'+
         '<td><strong>'+id+'</strong></td>'+
         '<td>'+(c1?'['+c1.symbolName+'] '+c1.name.split(' ')[0]:'—')+'</td>'+
         '<td>'+(c2?'['+c2.symbolName+'] '+c2.name.split(' ')[0]:'—')+'</td>'+
         '<td>'+(c3?'['+c3.symbolName+'] '+c3.name.split(' ')[0]:'—')+'</td>'+
-        '<td>'+(c4?'['+c4.symbolName+'] '+c4.name.split(' ')[0]:'—')+'</td>'+
         '<td>'+ts+'</td>'+
         '</tr>';
     }).join('')+
@@ -1316,7 +1316,7 @@ function bldAdmin(){
   // Fill role banner
   var roleDescs = {
     chief:     'Full access: candidates, results, analytics, voter log, reset votes, announcements, passwords',
-    security:  'Access: results, analytics, voter log',
+    security:  'Access: results, analytics, voter log, reset votes',
     vsecurity: 'Access: results, analytics, voter log (read-only)',
     viewer:    'Access: results and analytics only (read-only)'
   };
@@ -1366,8 +1366,12 @@ function getCand(role, id){
   return CD[role].find(function(x){return x.id===id;}) || null;
 }
 
-// Start Firebase — waits for SDK to load, then connects
-_startFirebase();
+// Start Firebase — wait for DOM ready first
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', function(){ _startFirebase(); });
+} else {
+  _startFirebase();
+}
 </script>
 </body>
 </html>
